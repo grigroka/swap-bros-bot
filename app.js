@@ -3,10 +3,14 @@
 const Commando = require('discord.js-commando');
 const path = require('path');
 const sqlite = require('sqlite');
-const { owner, token } = require('./.config.js');
+const { owner, token, commandPrefix } = require('./.config.js');
 
 // Init client
-const client = new Commando.Client({ owner });
+const client = new Commando.Client({
+  commandPrefix,
+  owner,
+  disableEveryone: true
+});
 
 client
   .setProvider(
@@ -18,11 +22,7 @@ client
 
 client.registry
   // Registers your custom command groups
-  .registerGroups([
-    ['fun', 'Fun commands'],
-    ['some', 'Some group'],
-    ['other', 'Some other group']
-  ])
+  .registerGroups([['main', 'Main bot commands']])
 
   // Registers all built-in groups, commands, and argument types
   .registerDefaults()
@@ -30,7 +30,10 @@ client.registry
   // Registers all of your commands in the ./commands/ directory
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
+client.on('ready', () => {
+  console.log('Logged in!');
+  client.user.setActivity('with himself');
+});
+
 // Login
 client.login(token);
-
-console.log(client);
