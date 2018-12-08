@@ -12,7 +12,11 @@ module.exports = class SayCommand extends Command {
         {
           key: 'text',
           prompt: 'What text would you like the bot to say?',
-          type: 'string'
+          type: 'string',
+          validate: text => {
+            if (text.length < 201) return true;
+            return 'Message Content is above 200 characters';
+          }
         }
       ]
     });
