@@ -9,6 +9,8 @@
   "author": "Rokas Grigaravičius",
   "license": "MIT",
   "dependencies": {
-    "discord.js-commando": "^0.10.0"
+    "discord.js": "^11.4.2",
+    "discord.js-commando": "^0.10.0",
+    "sqlite": "^3.0.0"
   }
 }
