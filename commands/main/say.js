@@ -9,6 +9,10 @@ module.exports = class SayCommand extends Command {
       memberName: 'say',
       description: 'Replies with the text you provide.',
       examples: ['say Hi there!'],
+      throttling: {
+        usages: 2,
+        duration: 10
+      },
       args: [
         {
           key: 'text',
